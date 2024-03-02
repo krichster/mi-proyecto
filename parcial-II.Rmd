@@ -1,17 +1,19 @@
 ---
 title: "Proyecto de Metodos no parametricos"
-author: "Key Hirosi Richster Quinto " 
+author: 'Key Hirosi Richster Quinto '
 date: "2024-02-24"
-output: 
+output:
   pdf_document:
     toc: true
     keep_tex: true
+  html_document:
+    toc: true
+    df_print: paged
 header-includes:
-  - \usepackage{titling}
-  - \usepackage{amsmath}
-lang: es-ES
-  
-always_allow_html: yes
+- \usepackage{titling}
+- \usepackage{amsmath}
+lang: "es-ES"
+always_allow_html: true
 ---
 
 \pretitle{\begin{center}\LARGE\bfseries}

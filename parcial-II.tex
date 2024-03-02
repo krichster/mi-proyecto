@@ -1,0 +1,876 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{spanish}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\usepackage{titling}
+\usepackage{amsmath}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Proyecto de Metodos no parametricos},
+  pdfauthor={Key Hirosi Richster Quinto},
+  pdflang={es-ES},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Proyecto de Metodos no parametricos}
+\author{Key Hirosi Richster Quinto}
+\date{2024-02-24}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\pretitle{\begin{center}\LARGE\bfseries}
+\posttitle{\end{center}\vspace{2em}}
+
+\begin{titlingpage}
+\maketitle
+\end{titlingpage}
+
+\newpage
+
+\hypertarget{punto-1}{%
+\section{Punto 1}\label{punto-1}}
+
+Una compañía de taxis está tratando de decidir si utiliza neumáticos
+radiales en lugar de los regulares con cinturón para mejorar la economía
+del combustible. Los neumáticos radiales y los neumáticos normales con
+cinturón se manejarán a lo largo de una pista prescrita para pruebas.
+Sin cambiar conductores, los mismos vehículos se equiparon con
+neumáticos normales de cinturón y se condujeron por la misma pista de
+pruebas. El consumo de gasolina, en kilómetros por litro, se registró de
+la siguiente manera.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{automovil}\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{16}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\CommentTok{\#Neumaticos\_radiales}
+\NormalTok{S1}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\FloatTok{4.2}\NormalTok{,}\FloatTok{4.7}\NormalTok{,}\FloatTok{6.6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\FloatTok{6.7}\NormalTok{,}\FloatTok{4.5}\NormalTok{,}\FloatTok{5.7}\NormalTok{,}\DecValTok{6}\NormalTok{,}\FloatTok{7.4}\NormalTok{,}\FloatTok{4.9}\NormalTok{,}\FloatTok{6.1}\NormalTok{,}\FloatTok{5.2}\NormalTok{,}\FloatTok{5.7}\NormalTok{,}\FloatTok{6.9}\NormalTok{,}\FloatTok{6.8}\NormalTok{,}\FloatTok{4.9}\NormalTok{)}
+\CommentTok{\#Neumatico\_con\_cinturon}
+\NormalTok{S2}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\FloatTok{4.2}\NormalTok{,}\FloatTok{4.9}\NormalTok{,}\FloatTok{6.2}\NormalTok{,}\FloatTok{6.9}\NormalTok{,}\FloatTok{6.8}\NormalTok{,}\FloatTok{4.4}\NormalTok{,}\FloatTok{5.7}\NormalTok{,}\FloatTok{5.8}\NormalTok{,}\FloatTok{6.9}\NormalTok{,}\FloatTok{4.9}\NormalTok{,}\FloatTok{6.0}\NormalTok{,}\FloatTok{4.9}\NormalTok{,}\FloatTok{5.3}\NormalTok{,}\FloatTok{6.5}\NormalTok{,}\FloatTok{7.1}\NormalTok{,}\FloatTok{4.8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+¿Se puede concluir al nivel de significancia de 0.01, que los vehículos
+equipados con neumáticos radiales dan en promedio una economia de
+combustible que aquellos equipados con neumaticos regulares con
+cinturón?
+
+deseamos probar que:
+
+\(H_0\): Los vehículos equipados con neumáticos radiales en promedio dan
+una economia de combustible que aquellos equipados con neumaticos
+regulares con cinturón
+
+\(H_0\): Los vehículos equipados con neumáticos radiales en promedio NO
+dan una economia de combustible que aquellos equipados con neumaticos
+regulares con cinturón
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n\_1}\OtherTok{\textless{}{-}}\FunctionTok{length}\NormalTok{(S1)}
+\NormalTok{n\_2}\OtherTok{\textless{}{-}}\FunctionTok{length}\NormalTok{(S2)}
+\end{Highlighting}
+\end{Shaded}
+
+Calculamos los rangos para ambas varables:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Ri}\OtherTok{\textless{}{-}}\FunctionTok{rank}\NormalTok{(}\FunctionTok{c}\NormalTok{(S1,S2));Ri}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  1.5  5.0 23.0 30.0 24.0  4.0 15.0 18.5 32.0  9.0 20.0 12.0 15.0 28.0 25.5
+## [16]  9.0  1.5  9.0 21.0 28.0 25.5  3.0 15.0 17.0 28.0  9.0 18.5  9.0 13.0 22.0
+## [31] 31.0  6.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sort}\NormalTok{(}\FunctionTok{c}\NormalTok{(S1,S2))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 4.2 4.2 4.4 4.5 4.7 4.8 4.9 4.9 4.9 4.9 4.9 5.2 5.3 5.7 5.7 5.7 5.8 6.0 6.0
+## [20] 6.1 6.2 6.5 6.6 6.7 6.8 6.8 6.9 6.9 6.9 7.0 7.1 7.4
+\end{verbatim}
+
+Ahora calculamos los U y los W
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{U\_1}\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(Ri[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(S1)]);U\_1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 271.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{U\_2}\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(Ri[(}\FunctionTok{length}\NormalTok{(S1) }\SpecialCharTok{+} \DecValTok{1}\NormalTok{)}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(Ri)]);U\_2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 256.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{W\_1}\OtherTok{\textless{}{-}}\NormalTok{U\_1}\SpecialCharTok{{-}}\NormalTok{((n\_1}\SpecialCharTok{*}\NormalTok{(n\_1}\SpecialCharTok{+}\DecValTok{1}\NormalTok{))}\SpecialCharTok{/}\DecValTok{2}\NormalTok{);W\_1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 135.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{W\_2}\OtherTok{\textless{}{-}}\NormalTok{U\_2}\SpecialCharTok{{-}}\NormalTok{((n\_2}\SpecialCharTok{*}\NormalTok{(n\_2}\SpecialCharTok{+}\DecValTok{1}\NormalTok{))}\SpecialCharTok{/}\DecValTok{2}\NormalTok{);W\_2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 120.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{alpha }\OtherTok{\textless{}{-}}\FloatTok{0.01}
+\NormalTok{tab}\OtherTok{\textless{}{-}} \FunctionTok{qnorm}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{alpha}\SpecialCharTok{/}\DecValTok{2}\NormalTok{);tab}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.575829
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{E\_W}\OtherTok{\textless{}{-}}\NormalTok{ (n\_1}\SpecialCharTok{*}\NormalTok{n\_2)}\SpecialCharTok{/}\DecValTok{2}\NormalTok{;E\_W}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 128
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{var\_W}\OtherTok{\textless{}{-}}\NormalTok{  (n\_1}\SpecialCharTok{*}\NormalTok{n\_2}\SpecialCharTok{*}\NormalTok{(n\_1}\SpecialCharTok{+}\NormalTok{n\_2}\SpecialCharTok{+}\DecValTok{1}\NormalTok{))}\SpecialCharTok{/}\DecValTok{12}\NormalTok{;var\_W}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 704
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Z1}\OtherTok{\textless{}{-}}\NormalTok{ (W\_1}\SpecialCharTok{{-}}\NormalTok{E\_W)}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(var\_W);Z1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2826669
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Z2}\OtherTok{\textless{}{-}}\NormalTok{ (W\_2}\SpecialCharTok{{-}}\NormalTok{E\_W)}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(var\_W);Z2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.2826669
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (Z1}\SpecialCharTok{\textgreater{}}\NormalTok{tab )\{}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"Se rechaza h0"}\NormalTok{)}
+\NormalTok{\}}\ControlFlowTok{else}\NormalTok{\{}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"No se rechaza H0"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "No se rechaza H0"
+\end{verbatim}
+
+Como \(Z_1 = 0.2826669 < 2.575829 = Z _{\alpha/2}\), No se rechaza
+\(H_0\), es decir, que los vehículos equipados con neumáticos radiales
+en promedio Sí dan una economia de combustible que aquellos equipados
+con neumaticos regulares con cinturón.
+
+\hypertarget{punto-2}{%
+\section{punto 2}\label{punto-2}}
+
+Se utilizan cuatro diferentes métodos para cultivar trigo, sobre 4
+parcelas de tierra, y se midió la producción por acre en cada parcela.
+Se desea comparar las medianas de cada una de las parcelas. Los
+resultados fueron:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{metodo1}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{83}\NormalTok{,}\DecValTok{91}\NormalTok{,}\DecValTok{94}\NormalTok{,}\DecValTok{89}\NormalTok{,}\DecValTok{89}\NormalTok{,}\DecValTok{96}\NormalTok{,}\DecValTok{91}\NormalTok{,}\DecValTok{92}\NormalTok{,}\DecValTok{90}\NormalTok{)}
+\NormalTok{metodo2}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{91}\NormalTok{,}\DecValTok{90}\NormalTok{,}\DecValTok{81}\NormalTok{,}\DecValTok{83}\NormalTok{,}\DecValTok{84}\NormalTok{,}\DecValTok{83}\NormalTok{,}\DecValTok{88}\NormalTok{,}\DecValTok{91}\NormalTok{,}\DecValTok{89}\NormalTok{,}\DecValTok{84}\NormalTok{)}
+\NormalTok{metodo3}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{101}\NormalTok{,}\DecValTok{100}\NormalTok{,}\DecValTok{91}\NormalTok{,}\DecValTok{93}\NormalTok{,}\DecValTok{93}\NormalTok{,}\DecValTok{95}\NormalTok{,}\DecValTok{94}\NormalTok{)}
+\NormalTok{metodo4}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{78}\NormalTok{,}\DecValTok{82}\NormalTok{,}\DecValTok{81}\NormalTok{,}\DecValTok{77}\NormalTok{,}\DecValTok{79}\NormalTok{,}\DecValTok{81}\NormalTok{,}\DecValTok{80}\NormalTok{,}\DecValTok{81}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Hay evidencia muestral sufiente para sugerir que algunos métodos para
+cultivar trigo tienden a dar mayor producción que otros?
+
+lo que se desea probar es que:
+
+\(H_0 :\mu_1=\mu_2=...=\mu_t \hspace{0.5cm} vs \hspace{0.5cm} H_1 :\) Al
+menos una media es distinta
+
+Entonces para iniciar calculamos los rangos
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ri}\OtherTok{\textless{}{-}}\FunctionTok{rank}\NormalTok{(}\FunctionTok{c}\NormalTok{(metodo1,metodo2,metodo3,metodo4));ri}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 11.0 23.0 29.5 17.0 17.0 32.0 23.0 26.0 19.5 23.0 19.5  6.5 11.0 13.5 11.0
+## [16] 15.0 23.0 17.0 13.5 34.0 33.0 23.0 27.5 27.5 31.0 29.5  2.0  9.0  6.5  1.0
+## [31]  3.0  6.5  4.0  6.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{R.j1}\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(ri[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(metodo1)]);R.j1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 198
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{R.j2 }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(ri[}\DecValTok{10}\SpecialCharTok{:}\DecValTok{19}\NormalTok{]);R.j2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 153
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{R.j3}\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(ri[}\DecValTok{20}\SpecialCharTok{:}\DecValTok{26}\NormalTok{]);R.j3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 205.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{R.j4}\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(ri[}\DecValTok{27}\SpecialCharTok{:}\DecValTok{34}\NormalTok{]);R.j4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 38.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{R.j\_Bar1}\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(ri[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(metodo1)]);R.j\_Bar1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 22
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{R.j\_Bar2 }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(ri[}\DecValTok{10}\SpecialCharTok{:}\DecValTok{19}\NormalTok{]);R.j\_Bar2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 15.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{R.j\_Bar3}\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(ri[}\DecValTok{20}\SpecialCharTok{:}\DecValTok{26}\NormalTok{]);R.j\_Bar3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 29.35714
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{R.j\_Bar4}\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(ri[}\DecValTok{27}\SpecialCharTok{:}\DecValTok{34}\NormalTok{]);R.j\_Bar4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.8125
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n}\OtherTok{\textless{}{-}}\FunctionTok{length}\NormalTok{(ri);n}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 34
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{H}\OtherTok{\textless{}{-}}\NormalTok{(}\DecValTok{12}\SpecialCharTok{/}\NormalTok{(n}\SpecialCharTok{*}\NormalTok{(n}\SpecialCharTok{+}\DecValTok{1}\NormalTok{)))}\SpecialCharTok{*}\FunctionTok{sum}\NormalTok{((R.j1}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(metodo1),(R.j2}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(metodo2),(R.j3}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(metodo3), (R.j4}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(metodo4))}\SpecialCharTok{{-}}\NormalTok{(}\DecValTok{3}\SpecialCharTok{*}\NormalTok{(n}\SpecialCharTok{+}\DecValTok{1}\NormalTok{));H}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 25.23604
+\end{verbatim}
+
+Como tenemos observaciones pareadas procedemos a hacer los siguientes
+cálculos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat1}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(metodo1,metodo2,metodo3,metodo4)}
+\NormalTok{freqx}\OtherTok{\textless{}{-}}\FunctionTok{table}\NormalTok{(dat1)}
+\NormalTok{freqx}\OtherTok{\textless{}{-}}\NormalTok{freqx[}\FunctionTok{which}\NormalTok{(freqx}\SpecialCharTok{\textgreater{}}\DecValTok{1}\NormalTok{)]}
+
+\NormalTok{freqx}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}rrrrrrrr@{}}
+\toprule\noalign{}
+81 & 83 & 84 & 89 & 90 & 91 & 93 & 94 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+4 & 3 & 2 & 3 & 2 & 5 & 2 & 2 \\
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{C}\OtherTok{\textless{}{-}}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{(}\FunctionTok{sum}\NormalTok{(freqx}\SpecialCharTok{\^{}}\DecValTok{3}\SpecialCharTok{{-}}\NormalTok{freqx)}\SpecialCharTok{/}\NormalTok{(n}\SpecialCharTok{\^{}}\DecValTok{3}\SpecialCharTok{{-}}\NormalTok{n));C}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9935829
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{H1}\OtherTok{\textless{}{-}}\NormalTok{ H}\SpecialCharTok{/}\NormalTok{C;H1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 25.39903
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{k}\OtherTok{\textless{}{-}}\DecValTok{4}
+
+\NormalTok{chi}\OtherTok{\textless{}{-}}\FunctionTok{qchisq}\NormalTok{(}\DecValTok{1}\FloatTok{{-}0.05}\NormalTok{,k}\DecValTok{{-}1}\NormalTok{);chi}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7.814728
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (H1}\SpecialCharTok{\textgreater{}=}\NormalTok{chi)\{}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"Se rechaza h0"}\NormalTok{)}
+\NormalTok{\}}\ControlFlowTok{else}\NormalTok{\{}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"No se rechaza H0"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Se rechaza h0"
+\end{verbatim}
+
+En conclución se rechaza \$ H\_0\$, ya que \(H_1 > X^{2}_{4}=7.814728\),
+entonces existe diferencias es decir que hay evidencia para sugerir que
+algunos métodos de producción tienden a dar mayor producción que otros.
+
+Teniendo en cuenta que se rechaza \(H_0\) procedemos a hacer las
+comparaciones de medias para ver cual de los tratamientos que difieren.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{alpha}\OtherTok{\textless{}{-}}\FloatTok{0.05}
+\NormalTok{zk}\OtherTok{\textless{}{-}}\FunctionTok{qnorm}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{alpha}\SpecialCharTok{/}\NormalTok{(}\DecValTok{4}\SpecialCharTok{*}\NormalTok{(}\DecValTok{4{-}1}\NormalTok{)));zk}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.638257
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{estadistica1}\OtherTok{\textless{}{-}}\NormalTok{zk}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{((n}\SpecialCharTok{*}\NormalTok{(n}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{/}\DecValTok{12}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{9}\SpecialCharTok{+}\DecValTok{1}\SpecialCharTok{/}\DecValTok{10}\NormalTok{));estadistica1 }\CommentTok{\#1 con 2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 11.72137
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{estadistica2}\OtherTok{\textless{}{-}}\NormalTok{zk}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{((n}\SpecialCharTok{*}\NormalTok{(n}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{/}\DecValTok{12}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{9}\SpecialCharTok{+}\DecValTok{1}\SpecialCharTok{/}\DecValTok{7}\NormalTok{));estadistica2  }\CommentTok{\#1 con 3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 12.8562
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{estadistica3}\OtherTok{\textless{}{-}}\NormalTok{zk}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{((n}\SpecialCharTok{*}\NormalTok{(n}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{/}\DecValTok{12}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{9}\SpecialCharTok{+}\DecValTok{1}\SpecialCharTok{/}\DecValTok{8}\NormalTok{));estadistica3  }\CommentTok{\#1 con 4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 12.39599
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{estadistica4}\OtherTok{\textless{}{-}}\NormalTok{zk}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{((n}\SpecialCharTok{*}\NormalTok{(n}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{/}\DecValTok{12}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{10}\SpecialCharTok{+}\DecValTok{1}\SpecialCharTok{/}\DecValTok{7}\NormalTok{));estadistica4  }\CommentTok{\#2 con 3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 12.57183
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{estadistica5}\OtherTok{\textless{}{-}}\NormalTok{zk}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{((n}\SpecialCharTok{*}\NormalTok{(n}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{/}\DecValTok{12}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{10}\SpecialCharTok{+}\DecValTok{1}\SpecialCharTok{/}\DecValTok{8}\NormalTok{));estadistica5  }\CommentTok{\#2 con 4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 12.1008
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{estadistica6}\OtherTok{\textless{}{-}}\NormalTok{zk}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{((n}\SpecialCharTok{*}\NormalTok{(n}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{/}\DecValTok{12}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{7}\SpecialCharTok{+}\DecValTok{1}\SpecialCharTok{/}\DecValTok{8}\NormalTok{));estadistica6  }\CommentTok{\#3 con 4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 13.20306
+\end{verbatim}
+
+Cuantas combinaciones puedo hacer?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#posibles combinaciones}
+\FunctionTok{choose}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#diferencias}
+\NormalTok{dif1}\OtherTok{\textless{}{-}}\FunctionTok{abs}\NormalTok{(R.j\_Bar1}\SpecialCharTok{{-}}\NormalTok{R.j\_Bar2);dif1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6.7
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dif2}\OtherTok{\textless{}{-}}\FunctionTok{abs}\NormalTok{(R.j\_Bar1}\SpecialCharTok{{-}}\NormalTok{R.j\_Bar3);dif2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7.357143
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dif3}\OtherTok{\textless{}{-}}\FunctionTok{abs}\NormalTok{(R.j\_Bar1}\SpecialCharTok{{-}}\NormalTok{R.j\_Bar4);dif3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 17.1875
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dif4}\OtherTok{\textless{}{-}}\FunctionTok{abs}\NormalTok{(R.j\_Bar2}\SpecialCharTok{{-}}\NormalTok{R.j\_Bar3);dif4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 14.05714
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dif5}\OtherTok{\textless{}{-}}\FunctionTok{abs}\NormalTok{(R.j\_Bar2}\SpecialCharTok{{-}}\NormalTok{R.j\_Bar4);dif5}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10.4875
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dif6}\OtherTok{\textless{}{-}}\FunctionTok{abs}\NormalTok{(R.j\_Bar3}\SpecialCharTok{{-}}\NormalTok{R.j\_Bar4);dif6}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 24.54464
+\end{verbatim}
+
+En este caso como tenemos diferentes observaciones vamos a tener una
+estadistica para cada diferencia de media
+
+Estadistica 1 con difernecia de media 1 \((6.7<11.72137\) \(ns\)
+
+Estadistica 2 con difernecia de media 2 \((7.357143<12.8562)\) \(ns\)
+
+Estadistica 3 con difernecia de media 3 \((17.1875>12.39599)\) \(*\)
+
+Estadistica 4 con difernecia de media 4 \((14.05714 >12.57183)\) \(*\)
+
+Estadistica 5con difernecia de media 5 \((10.4875 <12.1008 )\) \(ns\)
+
+Estadistica 6 con difernecia de media 6 \((24.54464 >13.20306)\) \(*\)
+
+Teniendo en cuenta que las estadísticas obtenidas tenemos que los
+tratamientos que difieren son el 1 con el 4, el 2 con el 3 y la 3 con la
+4 lo que me indica que estos son diferentes viendo que las diferencias
+de medias son mayores que la estadística obtenida para esa relación.
+
+\hypertarget{punto-3}{%
+\section{Punto 3}\label{punto-3}}
+
+Se diseña un experimento de degustación de modo que cuatro marcas de
+café colombiano sean clasificadas por 9 expertos. Para evitar cualquier
+efecto acumulado, la sucesión de pruebas para las 4 infusiones se
+determina aleatoriamente para cada uno de los 9 probadores expertos
+hasta que se dé una clasificación en una escala de 7 puntos (\(1=\)
+extremo desagradable, \(7=\) extremo agradable) para cada una de las
+siguientes 4 categorías: sabor, aroma, cuerpo y acidez. La suma de los
+puntajes de las cuatro características se convierte en rangos.
+
+\(H_0 :\) La mediana de los resultados sumados son iguales. \(H_1 :\)
+Por lo menos dos marcas tengan resultados diferentes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{marcas }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{experto=} \FunctionTok{c}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{1}\NormalTok{)),}
+  \AttributeTok{A =} \FunctionTok{c}\NormalTok{(}\DecValTok{24}\NormalTok{,}\DecValTok{27}\NormalTok{,}\DecValTok{19}\NormalTok{,}\DecValTok{24}\NormalTok{,}\DecValTok{22}\NormalTok{,}\DecValTok{26}\NormalTok{,}\DecValTok{27}\NormalTok{,}\DecValTok{25}\NormalTok{,}\DecValTok{22}\NormalTok{),}
+  \AttributeTok{B =} \FunctionTok{c}\NormalTok{(}\DecValTok{26}\NormalTok{,}\DecValTok{27}\NormalTok{,}\DecValTok{22}\NormalTok{,}\DecValTok{27}\NormalTok{,}\DecValTok{25}\NormalTok{,}\DecValTok{27}\NormalTok{,}\DecValTok{26}\NormalTok{,}\DecValTok{27}\NormalTok{,}\DecValTok{23}\NormalTok{),}
+  \AttributeTok{C =} \FunctionTok{c}\NormalTok{(}\DecValTok{25}\NormalTok{,}\DecValTok{26}\NormalTok{,}\DecValTok{20}\NormalTok{,}\DecValTok{25}\NormalTok{,}\DecValTok{22}\NormalTok{,}\DecValTok{24}\NormalTok{,}\DecValTok{22}\NormalTok{,}\DecValTok{24}\NormalTok{,}\DecValTok{20}\NormalTok{),}
+  \AttributeTok{D =} \FunctionTok{c}\NormalTok{(}\DecValTok{22}\NormalTok{,}\DecValTok{24}\NormalTok{,}\DecValTok{16}\NormalTok{,}\DecValTok{23}\NormalTok{,}\DecValTok{21}\NormalTok{,}\DecValTok{24}\NormalTok{,}\DecValTok{23}\NormalTok{,}\DecValTok{21}\NormalTok{,}\DecValTok{19}\NormalTok{)}
+\NormalTok{);marcas}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}rrrrr@{}}
+\toprule\noalign{}
+experto & A & B & C & D \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & 24 & 26 & 25 & 22 \\
+2 & 27 & 27 & 26 & 24 \\
+3 & 19 & 22 & 20 & 16 \\
+4 & 24 & 27 & 25 & 23 \\
+5 & 22 & 25 & 22 & 21 \\
+6 & 26 & 27 & 24 & 24 \\
+7 & 27 & 26 & 22 & 23 \\
+8 & 25 & 27 & 24 & 21 \\
+9 & 22 & 23 & 20 & 19 \\
+\end{longtable}
+
+Calculamos los rangos para las columnas B, C y D organizando por filas
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ranks1 }\OtherTok{\textless{}{-}} \FunctionTok{apply}\NormalTok{(marcas[, }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{], }\DecValTok{1}\NormalTok{, rank)}
+
+
+\NormalTok{rangos1}\OtherTok{\textless{}{-}}\FunctionTok{t}\NormalTok{(ranks1);rangos1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}rrrr@{}}
+\toprule\noalign{}
+A & B & C & D \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+2.0 & 4.0 & 3.0 & 1.0 \\
+3.5 & 3.5 & 2.0 & 1.0 \\
+2.0 & 4.0 & 3.0 & 1.0 \\
+2.0 & 4.0 & 3.0 & 1.0 \\
+2.5 & 4.0 & 2.5 & 1.0 \\
+3.0 & 4.0 & 1.5 & 1.5 \\
+4.0 & 3.0 & 1.0 & 2.0 \\
+3.0 & 4.0 & 2.0 & 1.0 \\
+3.0 & 4.0 & 2.0 & 1.0 \\
+\end{longtable}
+
+calculamos las sumas de los rangos por columnas
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{suma1}\OtherTok{\textless{}{-}} \FunctionTok{colSums}\NormalTok{(rangos1);suma1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    A    B    C    D 
+## 25.0 34.5 20.0 10.5
+\end{verbatim}
+
+Vemos el número de filas y el nmero de columnas
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n1}\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(marcas);n1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{k1}\OtherTok{\textless{}{-}} \FunctionTok{ncol}\NormalTok{(marcas[}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{]);k1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+Ahora contamos las observaciones repetidas por filas
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{contar\_repetidas }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(fila) \{}
+\NormalTok{  freq }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(fila)  }\CommentTok{\# Calcular la frecuencia de cada observación en la fila}
+\NormalTok{  freq }\OtherTok{\textless{}{-}}\NormalTok{ freq[freq }\SpecialCharTok{\textgreater{}} \DecValTok{1}\NormalTok{]  }\CommentTok{\# Filtrar solo las observaciones repetidas}
+  \FunctionTok{return}\NormalTok{(freq)}
+\NormalTok{\}}
+
+\CommentTok{\# Aplicar la función a cada fila del DataFrame}
+\NormalTok{obs\_rep\_por\_fila }\OtherTok{\textless{}{-}} \FunctionTok{apply}\NormalTok{(rangos1, }\DecValTok{1}\NormalTok{, contar\_repetidas)}
+
+\CommentTok{\# Unificar las frecuencias de observaciones repetidas en un vector}
+\NormalTok{Tk }\OtherTok{\textless{}{-}} \FunctionTok{unlist}\NormalTok{(obs\_rep\_por\_fila);Tk}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 3.5 2.5 1.5 
+##   2   2   2
+\end{verbatim}
+
+Obtenemos el valor F
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fk1}\OtherTok{\textless{}{-}}\NormalTok{(}\DecValTok{12}\SpecialCharTok{*}\FunctionTok{sum}\NormalTok{(suma1}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{{-}}\NormalTok{(}\DecValTok{3}\SpecialCharTok{*}\NormalTok{n1}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{k1}\SpecialCharTok{*}\NormalTok{(k1}\SpecialCharTok{+}\DecValTok{1}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}\SpecialCharTok{/}\NormalTok{(n1}\SpecialCharTok{*}\NormalTok{k1}\SpecialCharTok{*}\NormalTok{(k1}\SpecialCharTok{+}\DecValTok{1}\NormalTok{)}\SpecialCharTok{+}\NormalTok{((n1}\SpecialCharTok{*}\NormalTok{k1}\SpecialCharTok{{-}}\FunctionTok{sum}\NormalTok{(Tk}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}\SpecialCharTok{/}\NormalTok{(k1}\DecValTok{{-}1}\NormalTok{)));fk1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 19.18085
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#sale el mismo fk}
+\FunctionTok{friedman.test}\NormalTok{(rangos1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Friedman rank sum test
+## 
+## data:  rangos1
+## Friedman chi-squared = 20.724, df = 3, p-value = 0.0001201
+\end{verbatim}
+
+Como el tamaño de la muestra es 9 y \(F = 19.18085\) , se encuentra que
+el \(p_valor\) es \(p = 0.0001201\), por lo tanto \(0.0001201 < 0.05\),
+entonces rechazamos \(H_0\). Por lo que se concluye que por lo menos dos
+marcas de café tengan resultados diferentes.
+
+\end{document}
