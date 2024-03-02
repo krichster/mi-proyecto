@@ -1,6 +1,6 @@
 ---
 title: "Proyecto de Metodos no parametricos"
-author: "Key Hirosi Richster Quinto  \\ Pofesora: María Alejandra Martínez G."
+author: "Key Hirosi Richster Quinto " 
 date: "2024-02-24"
 output: 
   pdf_document:
