@@ -3,12 +3,12 @@ title: "Proyecto de Metodos no parametricos"
 author: 'Key Hirosi Richster Quinto '
 date: "2024-02-24"
 output:
-  pdf_document:
-    toc: true
-    keep_tex: true
   html_document:
     toc: true
     df_print: paged
+  pdf_document:
+    toc: true
+    keep_tex: true
 header-includes:
 - \usepackage{titling}
 - \usepackage{amsmath}
@@ -181,7 +181,8 @@ n<-length(ri);n
 
 ```{r}
 
-H<-(12/(n*(n+1)))*sum((R.j1^2)/length(metodo1),(R.j2^2)/length(metodo2),(R.j3^2)/length(metodo3), (R.j4^2)/length(metodo4))-(3*(n+1));H
+H<-(12/(n*(n+1)))*sum((R.j1^2)/length(metodo1),(R.j2^2)/length(metodo2),
+                      (R.j3^2)/length(metodo3),(R.j4^2)/length(metodo4))-(3*(n+1));H
 
 ```
 
